@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+</head>
+
+<body style="background-color:pink; overflow:hidden;">
+
+<div id="container">
+    <h1 id="message">Hi 😊</h1>
+    <button id="okBtn">OK</button>
+
+    <div id="choices" style="display:none;">
+        <h1>Will you be my Valentine? ❤️</h1>
+        <!-- YES as clickable link -->
+        <a href="https://m.me/andriengayao.sanbuenaventura" target="_blank" style="text-decoration:none;">
+            <button id="Yes">Yes!</button>
+        </a>
+        <button id="No">No</button>
+    </div>
+</div>
+
+<style>
+    #container {
+        margin-top: 150px;
+        text-align: center;
+        position: relative;
+    }
+
+    h1 { font-size: 40px; font-family: Arial, sans-serif; }
+    button { font-size:16px; padding:10px 20px; cursor:pointer; border:none; border-radius:5px; }
+    #Yes { background-color: green; color:white; animation: pulse 0.6s infinite; }
+    #No { background-color: red; color:white; position: fixed; margin-left: 10px; }
+    
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
+</style>
+
+<script>
+    // Sequence of messages
+    const messages = [
+        "I just want to tell you something 😊",
+        "I hope this makes you smile ❤️",
+        "So I want to ask you..."
+    ];
+
+    let index = 0;
+    const messageEl = document.getElementById("message");
+    const okBtn = document.getElementById("okBtn");
+    const choices = document.getElementById("choices");
+    const noBtn = document.getElementById("No");
+
+    okBtn.onclick = function () {
+        index++;
+        if(index < messages.length) {
+            messageEl.innerText = messages[index];
+        } else {
+            messageEl.style.display = "none";
+            okBtn.style.display = "none";
+            choices.style.display = "block";
+        }
+    };
+
+    // NO button = hindi mapipindot
+    noBtn.addEventListener("mouseenter", function() {
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
+        noBtn.style.left = Math.random() * maxX + "px";
+        noBtn.style.top = Math.random() * maxY + "px";
+    });
+</script>
+
+</body>
+</html>
